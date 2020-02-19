@@ -1,5 +1,7 @@
 use mint::ColumnMatrix4;
 
+pub type Matrix4 = ColumnMatrix4<f32>;
+
 pub trait UniformValue: Copy {
   unsafe fn gl_uniform(self, location: i32);
 }
@@ -22,7 +24,7 @@ impl UniformValue for i32 {
   }
 }
 
-impl UniformValue for ColumnMatrix4<f32> {
+impl UniformValue for Matrix4 {
   unsafe fn gl_uniform(self, location: i32) {
     gl::UniformMatrix4fv(location, 1, gl::FALSE, (self.as_ref() as &[f32; 16]).as_ptr());
   }
