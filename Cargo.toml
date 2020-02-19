@@ -1,0 +1,9 @@
+[package]
+name = "strugl"
+version = "0.1.0"
+authors = ["LOU Xun <aquarhead@ela.build>"]
+edition = "2018"
+
+[dependencies]
+gl = "0.14"
+mint = "0.5"
