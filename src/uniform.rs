@@ -1,5 +1,6 @@
-use mint::ColumnMatrix4;
+use mint::{ColumnMatrix4, Vector3};
 
+pub type Vec3 = Vector3<f32>;
 pub type Matrix4 = ColumnMatrix4<f32>;
 
 pub trait UniformValue: Copy {
@@ -21,6 +22,12 @@ impl UniformValue for f32 {
 impl UniformValue for i32 {
   unsafe fn gl_uniform(self, location: i32) {
     gl::Uniform1i(location, self);
+  }
+}
+
+impl UniformValue for Vec3 {
+  unsafe fn gl_uniform(self, location: i32) {
+    gl::Uniform3f(location, self.x, self.y, self.z);
   }
 }
 
